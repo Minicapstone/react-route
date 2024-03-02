@@ -4,7 +4,7 @@ import Transaction from "./Transaction";
 
 export const UserDashboard = ({ children }) => {
   return (
-    <div className="flex-1">
+    <div className="h-screen flex-1">
       <Greetings></Greetings>
       <Transaction></Transaction>
       {children}

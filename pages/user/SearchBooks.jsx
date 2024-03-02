@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 
@@ -50,6 +49,7 @@ const UserSearchBooks = () => {
       category: "Natural Sciences",
       status: "Available",
     },
+    
   ];
 
   const filteredData = bookData.filter((item) =>
@@ -90,35 +90,37 @@ const UserSearchBooks = () => {
         </select>
       </div>
 
-      <table className="bg-white w-full my-5 rounded-2xl px-2 py-2 shadow-xl overflow-y-auto">
-        <thead>
-          <tr className="text-left text-black text-base border-b border-gray table-title">
-            <th className="px-3 py-4">DDC ID</th>
-            <th className="px-3 py-4">Title of the Book</th>
-            <th className="px-3 py-4">Author</th>
-            <th className="px-3 py-4">Category</th>
-            <th className="px-3 py-4">Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredData.map((item) => (
-            <tr key={item.ddcId} className="border-b border-gray text-sm ">
-              <td className="px-2 py-2">{item.ddcId}</td>
-              <td className="px-2 py-2">{item.title}</td>
-              <td className="px-2 py-2">{item.author}</td>
-              <td className="px-2 py-2">{item.category}</td>
-              <td
-                className={`px-1 py-2 text-center status-text ${
-                  item.status === "Available" ? "bg-green" : "bg-red"
-                } m-2 inline-block rounded-xl text-sm w-3/4`}
-              >
-                {item.status}
-              </td>
+      <div className="book-table overflow-y-auto rounded-xl custom-scrollbar">
+        <table className="bg-white w-full rounded-2xl px-2 py-2 shadow-xl">
+          <thead className="sticky top-0 bg-white">
+            <tr className="text-left text-black text-base border-b border-gray">
+              <th className="px-3 py-4">DDC ID</th>
+              <th className="px-3 py-4">Title of the Book</th>
+              <th className="px-3 py-4">Author</th>
+              <th className="px-3 py-4">Category</th>
+              <th className="px-3 py-4">Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.ddcId} className="border-b border-gray text-sm ">
+                <td className="px-2 py-2">{item.ddcId}</td>
+                <td className="px-2 py-2">{item.title}</td>
+                <td className="px-2 py-2">{item.author}</td>
+                <td className="px-2 py-2">{item.category}</td>
+                <td
+                  className={`px-1 py-2 text-center ${
+                    item.status === "Available" ? "bg-green" : "bg-red"
+                  } m-2 inline-block rounded-xl text-sm w-3/4`}
+                >
+                  {item.status}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
