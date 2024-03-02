@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   TbLayoutSidebarRightExpandFilled,
@@ -18,6 +18,11 @@ import Profile from "../assets/profile.jpg";
 const SidebarUser = () => {
 
   const [isOpen, setisOpen] = useState(true);
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
   return (
     <div>
       {!isOpen ? (
@@ -82,22 +87,23 @@ const SidebarUser = () => {
 
             <hr className="m-2 text-gray text-opacity-50" />
 
-            <Link to="/"><li className="text-white text-base flex items-center px-4 py-3 m-2 hover:bg-white hover:text-black hover:rounded-xl cursor-pointer">
+            <Link to="/">
+              <li className={`text-white text-base flex items-center px-4 py-3 m-2 ${isActive('/') ? ' bg-blue rounded-xl' : ''} hover:bg-white hover:text-black hover:rounded-xl cursor-pointer`}>
               <MdDashboard className="text-3xl mr-2" />
               Dashboard
             </li></Link>
 
-            <Link to="/search-books"><li className="text-white text-base flex items-center px-4 py-3 m-2 hover:bg-white hover:text-black hover:rounded-xl cursor-pointer">
+            <Link to="/search-books"><li className={`text-white text-base flex items-center px-4 py-3 m-2 ${isActive('/search-books') ? ' bg-blue rounded-xl' : ''} hover:bg-white hover:text-black hover:rounded-xl cursor-pointer`}>
               <GiBookshelf className="text-3xl mr-2" />
               Search Book
             </li></Link>
 
-            <Link to="/settings"><li className="text-white text-base flex items-center px-4 py-3 m-2 hover:bg-white hover:text-black hover:rounded-xl cursor-pointer">
+            <Link to="/settings"><li className={`text-white text-base flex items-center px-4 py-3 m-2 ${isActive('/settings') ? ' bg-blue rounded-xl' : ''} hover:bg-white hover:text-black hover:rounded-xl cursor-pointer`}>
               <TbSettings className="text-3xl mr-2" />
               Account Settings
             </li></Link>
 
-            <Link to="/FAQ"><li className="text-white text-base flex items-center px-4 py-3 m-2 hover:bg-white hover:text-black hover:rounded-xl cursor-pointer">
+            <Link to="/FAQ"><li className={`text-white text-base flex items-center px-4 py-3 m-2 ${isActive('/FAQ') ? ' bg-blue rounded-xl' : ''} hover:bg-white hover:text-black hover:rounded-xl cursor-pointer`}>
               <IoIosHelpCircle className="text-3xl mr-2" />
               Help and Support
             </li></Link>
